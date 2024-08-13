@@ -1,10 +1,14 @@
+import { getCityAll } from '@/services'
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 export const useCityStore = defineStore('city', () => {
-  const cities = reactive([])
+  const allCities = ref({})
 
-  const data = async () => {}
+  const axiosAllCitiesData = async () => {
+    const res = await getCityAll()
+    allCities.value = res.data
+  }
 
-  return { cities, data }
+  return { allCities, axiosAllCitiesData }
 })

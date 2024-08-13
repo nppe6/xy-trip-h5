@@ -28,6 +28,14 @@ const router = createRouter({
       component: () => import('@/views/order/index.vue')
     },
     {
+      path: '/city',
+      name: 'city',
+      component: () => import('@/views/city/index.vue'),
+      meta: {
+        hideTabbar: true
+      }
+    },
+    {
       path: '/:pathMatch(.*)',
       component: () => import('@/views/nofind/index.vue')
     }
