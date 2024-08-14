@@ -1,11 +1,13 @@
 <template>
-  <div class="location">
-    <div class="city" @click="handleCity()">
-      {{ currentCity.cityName }}
-    </div>
-    <div class="position" @click="getPosition()">
-      <span class="text">我的位置</span>
-      <img src="@/assets/image/home/icon_location.png" alt="" />
+  <div class="search-box">
+    <div class="location">
+      <div class="city" @click="handleCity()">
+        {{ currentCity.cityName }}
+      </div>
+      <div class="position" @click="getPosition()">
+        <span class="text">我的位置</span>
+        <img src="@/assets/image/home/icon_location.png" alt="" />
+      </div>
     </div>
   </div>
 </template>
@@ -38,26 +40,28 @@ const { currentCity } = storeToRefs(cityStore)
 </script>
 
 <style lang="scss" scoped>
-.location {
-  display: flex;
-  align-items: center;
-  height: 44px;
-  padding: 0 20px;
-  color: #333;
-
-  .city {
-    margin-right: auto;
-  }
-
-  .position {
+.search-box {
+  .location {
     display: flex;
-    height: 100%;
     align-items: center;
+    height: 44px;
+    padding: 0 20px;
+    color: #333;
 
-    img {
-      width: 22px;
-      height: 22px;
-      margin-left: 2px;
+    .city {
+      margin-right: auto;
+    }
+
+    .position {
+      display: flex;
+      height: 100%;
+      align-items: center;
+
+      img {
+        width: 22px;
+        height: 22px;
+        margin-left: 2px;
+      }
     }
   }
 }

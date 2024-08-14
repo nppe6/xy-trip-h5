@@ -5,12 +5,14 @@
       <img src="@/assets/image/home/banner.webp" />
     </div>
     <homeSearchBox></homeSearchBox>
+    <homeDayBox></homeDayBox>
   </div>
 </template>
 
 <script setup>
 import homeNavBar from './cpns/home-nav-bar.vue'
 import homeSearchBox from './cpns/home-search-box.vue'
+import homeDayBox from './cpns/home-day-box.vue'
 defineOptions({
   name: 'HomeIndex'
 })
