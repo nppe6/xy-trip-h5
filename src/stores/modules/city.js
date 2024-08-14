@@ -1,10 +1,19 @@
+import { getCityAll } from '@/services'
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 export const useCityStore = defineStore('city', () => {
-  const cities = reactive([])
+  // 网络中拿取的数据
+  const allCities = ref({})
+  // 全局选择的数据
+  const currentCity = ref({
+    cityName: '赣州'
+  })
 
-  const data = async () => {}
+  const axiosAllCitiesData = async () => {
+    const res = await getCityAll()
+    allCities.value = res.data
+  }
 
-  return { cities, data }
+  return { allCities, axiosAllCitiesData, currentCity }
 })
