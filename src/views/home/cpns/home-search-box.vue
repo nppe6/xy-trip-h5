@@ -1,6 +1,8 @@
 <template>
   <div class="location">
-    <div class="city" @click="handleCity()">赣州</div>
+    <div class="city" @click="handleCity()">
+      {{ currentCity.cityName }}
+    </div>
     <div class="position" @click="getPosition()">
       <span class="text">我的位置</span>
       <img src="@/assets/image/home/icon_location.png" alt="" />
@@ -9,6 +11,8 @@
 </template>
 
 <script setup>
+import { useCityStore } from '@/stores/modules/city'
+import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -16,6 +20,7 @@ const handleCity = () => {
   router.push({ name: 'city' })
 }
 
+// 根据经纬度 获取当前位置
 const getPosition = () => {
   navigator.geolocation.getCurrentPosition(
     (res) => {
@@ -26,6 +31,10 @@ const getPosition = () => {
     }
   )
 }
+
+// 拿到pinia 存储的全局城市数据
+const cityStore = useCityStore()
+const { currentCity } = storeToRefs(cityStore)
 </script>
 
 <style lang="scss" scoped>

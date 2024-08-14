@@ -16,7 +16,13 @@
       </van-tabs>
     </div>
     <div class="content">
-      {{ allCitiesData }}
+      <template v-for="(value, key) in allCities" :key="key">
+        <cityIndexBar
+          v-show="tabActive === key"
+          :gruop-data="value.cities"
+          :hot-cities="value.hotCities"
+        ></cityIndexBar>
+      </template>
     </div>
   </div>
 </template>
@@ -25,8 +31,9 @@
 // import { getCityAll } from '@/services'
 import { useCityStore } from '@/stores/modules/city'
 import { storeToRefs } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import cityIndexBar from './cpns/city-index-bar.vue'
 defineOptions({
   name: 'CityIndex'
 })
@@ -51,7 +58,7 @@ const { allCities } = storeToRefs(storeCities)
 storeCities.axiosAllCitiesData()
 
 // 这里如果想要他不失去响应式 就必须使用计算属性去进行拿值
-const allCitiesData = computed(() => allCities.value[tabActive.value])
+// const allCitiesData = computed(() => allCities.value[tabActive.value])
 
 // const allCity = ref({})
 // getCityAll().then((res) => {
@@ -62,6 +69,10 @@ const allCitiesData = computed(() => allCities.value[tabActive.value])
 
 <style lang="scss" scoped>
 .city {
+  .top {
+    position: relative;
+    z-index: 999;
+  }
   .content {
     height: calc(100vh - 98px);
     overflow-y: auto;
