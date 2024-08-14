@@ -1,6 +1,6 @@
 <template>
   <div class="day-main">
-    <div class="date-range" @click="showCalender = true">
+    <div class="date-range bottom-gray-line" @click="showCalender = true">
       <div class="start">
         <span class="date-title">入住</span>
         <span>{{ nowData }}</span>
@@ -10,6 +10,11 @@
         <span class="date-title">离开</span>
         <span>{{ endData }}</span>
       </div>
+    </div>
+    <div class="section bottom-gray-line">
+      <div class="price">价格不限</div>
+      <div class="people">人数不限</div>
+      <div class="keyword">关键字/位置/民宿名</div>
     </div>
     <van-calendar v-model:show="showCalender" type="range" color="#ff9854" @confirm="onConfirm" />
   </div>
@@ -48,7 +53,7 @@ const handleDay = (start, end) => {
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
     margin-top: 10px;
-    padding: 0 20px;
+    padding: 0 20px 5px;
 
     .start,
     .end {
@@ -60,6 +65,37 @@ const handleDay = (start, end) => {
         color: #aaa;
         margin-bottom: 4px;
       }
+    }
+  }
+  .section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .price,
+    .people {
+      color: #aaa;
+      font-size: 14px;
+      padding: 10px 0;
+    }
+
+    .price {
+      grid-column: 1 / span 1;
+      text-align: end;
+      padding-right: 20px;
+    }
+
+    .people {
+      grid-column: 3 / span 1;
+      text-align: start;
+      padding-left: 20px;
+    }
+
+    .keyword {
+      grid-column: 1 / span 4;
+      color: #aaa;
+      font-size: 14px;
+      padding: 10px 0 10px;
+      margin-left: 40px;
     }
   }
 }

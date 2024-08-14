@@ -1,6 +1,6 @@
 <template>
   <div class="search-box">
-    <div class="location">
+    <div class="location bottom-gray-line">
       <div class="city" @click="handleCity()">
         {{ currentCity.cityName }}
       </div>
@@ -56,6 +56,11 @@ const { currentCity } = storeToRefs(cityStore)
       display: flex;
       height: 100%;
       align-items: center;
+
+      .text {
+        color: #333;
+        font-size: 15px;
+      }
 
       img {
         width: 22px;
