@@ -7,6 +7,8 @@
     <homeSearchBox></homeSearchBox>
     <homeDayBox></homeDayBox>
     <homeHotSuggests></homeHotSuggests>
+    <homeCategoriesBox></homeCategoriesBox>
+    <homeContentBox></homeContentBox>
   </div>
 </template>
 
@@ -15,6 +17,8 @@ import homeNavBar from './cpns/home-nav-bar.vue'
 import homeSearchBox from './cpns/home-search-box.vue'
 import homeDayBox from './cpns/home-day-box.vue'
 import homeHotSuggests from './cpns/home-hot-suggests.vue'
+import homeCategoriesBox from './cpns/home-categories-box.vue'
+import homeContentBox from './cpns/home-content-box.vue'
 defineOptions({
   name: 'HomeIndex'
 })
@@ -22,6 +26,8 @@ defineOptions({
 
 <style lang="scss" scoped>
 .home {
+  height: calc(100vh - 50px);
+  overflow-y: auto;
   .banner {
     img {
       width: 100%;
