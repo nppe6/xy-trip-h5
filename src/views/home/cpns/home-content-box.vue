@@ -11,9 +11,9 @@
         </div>
       </template>
     </div>
-    <div class="footer">
+    <!-- <div class="footer">
       <button class="add-house" @click="handleMoney()">加载更多</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -25,13 +25,13 @@ import { storeToRefs } from 'pinia'
 
 const store = usePageCountent()
 const { houseList } = storeToRefs(store)
-store.axiosGetPageCounent()
+// store.axiosGetPageCounent()
 
-const handleMoney = () => {
-  console.log('加载更多')
+// const handleMoney = () => {
+//   console.log('加载更多')
 
-  store.axiosGetPageCounent()
-}
+//   store.axiosGetPageCounent()
+// }
 </script>
 
 <style lang="scss" scoped>
