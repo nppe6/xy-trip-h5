@@ -8,6 +8,9 @@
     <homeDayBox></homeDayBox>
     <homeHotSuggests></homeHotSuggests>
     <homeCategoriesBox></homeCategoriesBox>
+    <div v-if="isShowSearchBool" class="search-bar">
+      <searchBar></searchBar>
+    </div>
     <homeContentBox></homeContentBox>
   </div>
 </template>
@@ -20,8 +23,9 @@ import homeHotSuggests from './cpns/home-hot-suggests.vue'
 import homeCategoriesBox from './cpns/home-categories-box.vue'
 import homeContentBox from './cpns/home-content-box.vue'
 import useScroll from '@/hooks/useScroll'
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 import { usePageCountent } from '@/stores/modules/houselist'
+import searchBar from '@/components/search-bar/index.vue'
 defineOptions({
   name: 'HomeIndex'
 })
@@ -44,7 +48,7 @@ store.axiosGetPageCounent()
 //   }
 // })
 
-const { isReachButton } = useScroll()
+const { isReachButton, scrollTop } = useScroll()
 console.log(isReachButton)
 
 watch(isReachButton, (newVal) => {
@@ -53,6 +57,10 @@ watch(isReachButton, (newVal) => {
       isReachButton.value = false
     })
   }
+})
+
+const isShowSearchBool = computed(() => {
+  return scrollTop.value > 350
 })
 </script>
 
@@ -64,6 +72,17 @@ watch(isReachButton, (newVal) => {
     img {
       width: 100%;
     }
+  }
+
+  .search-bar {
+    height: 44px;
+    padding: 16px 16px 10px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
   }
 }
 </style>
