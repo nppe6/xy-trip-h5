@@ -26,6 +26,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 const props = defineProps({
   swipeData: {
     type: Array,
@@ -33,13 +34,22 @@ const props = defineProps({
   }
 })
 
-const swipeGroup = {}
-for (const item of props.swipeData) {
-  swipeGroup[item.enumPictureCategory] = []
-}
+const swipeGroup = ref({})
+// for (const item of props.swipeData) {
+//   swipeGroup[item.enumPictureCategory] = []
+// }
+
+// for (const item of props.swipeData) {
+//   const valueArray = swipeGroup[item.enumPictureCategory]
+//   valueArray.push(item)
+// }
 
 for (const item of props.swipeData) {
-  const valueArray = swipeGroup[item.enumPictureCategory]
+  let valueArray = swipeGroup.value[item.enumPictureCategory]
+  if (!valueArray) {
+    valueArray = []
+    swipeGroup.value[item.enumPictureCategory] = valueArray
+  }
   valueArray.push(item)
 }
 
@@ -48,7 +58,7 @@ const getName = (name) => {
 }
 
 const getCount = (item) => {
-  const valueArray = swipeGroup[item.enumPictureCategory]
+  const valueArray = swipeGroup.value[item.enumPictureCategory]
   return valueArray.findIndex((ele) => ele === item) + 1
 }
 </script>
