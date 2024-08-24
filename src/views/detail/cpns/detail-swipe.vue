@@ -1,30 +1,56 @@
 <template>
-  <div v-if="mainPart" class="detail-swupe">
+  <div class="detail-swupe">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <template v-for="(ele, index) in mainPart.topModule.housePicture.housePics" :key="index">
+      <template v-for="(ele, index) in swipeData" :key="index">
         <van-swipe-item>
           <img :src="ele.url" alt="" />
         </van-swipe-item>
+      </template>
+
+      <template #indicator="{ active }">
+        <!-- <div class="indicator">{{ active + 1 }} / {{ total }}</div> -->
+        <!-- {{ active }} -->
+        <div class="indicator">
+          <template v-for="(value, key, index) in swipeGroup" :key="index">
+            <span class="item" :class="{ active: swipeData[active]?.enumPictureCategory == key }">
+              <span>{{ getName(value[0].title) }}</span>
+              <span v-if="swipeData[active]?.enumPictureCategory == key"
+                >{{ getCount(swipeData[active]) }}/{{ value.length }}</span
+              >
+            </span>
+          </template>
+        </div>
       </template>
     </van-swipe>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useDetailStore } from '@/stores/modules/detail'
-import { storeToRefs } from 'pinia'
-
 const props = defineProps({
-  houseId: String
+  swipeData: {
+    type: Array,
+    default: () => []
+  }
 })
 
-const detailStore = useDetailStore()
-const { detailInfos } = storeToRefs(detailStore)
-detailStore.axiosGetHouseInfos(props.houseId)
-// 因为这里我们请求出来的数据过于复杂 这时候我们可以通过计算属性 去进行拆解出来 就不用 在detailInfos.mainPart
-const mainPart = computed(() => detailInfos.value.mainPart)
-console.log('321313', mainPart)
+const swipeGroup = {}
+for (const item of props.swipeData) {
+  swipeGroup[item.enumPictureCategory] = []
+}
+
+for (const item of props.swipeData) {
+  const valueArray = swipeGroup[item.enumPictureCategory]
+  valueArray.push(item)
+}
+
+const getName = (name) => {
+  return name.replace('：', '')
+}
+
+const getCount = (item) => {
+  const valueArray = swipeGroup[item.enumPictureCategory]
+  return valueArray.findIndex((ele) => ele === item) + 1
+}
 </script>
 
 <style lang="scss" scoped>
@@ -32,6 +58,26 @@ console.log('321313', mainPart)
   .my-swipe {
     img {
       width: 100%;
+    }
+
+    .indicator {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      padding: 2px 5px;
+      font-size: 12px;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.3);
+
+      .item {
+        padding: 2px 3px;
+        border-radius: 8px;
+
+        &.active {
+          background-color: #fff;
+          color: #000;
+        }
+      }
     }
   }
 }
