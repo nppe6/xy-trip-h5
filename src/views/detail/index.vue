@@ -3,6 +3,10 @@
     <van-nav-bar title="房屋详情" left-text="返回" left-arrow @click-left="onClickLeft()" />
     <div v-if="mainPart">
       <detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics"></detail-swipe>
+      <detail-infos :house-data="mainPart.topModule"></detail-infos>
+      <detail-facility
+        :facility="mainPart.dynamicModule.facilityModule.houseFacility"
+      ></detail-facility>
     </div>
   </div>
 </template>
@@ -10,10 +14,14 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router'
-import DetailSwipe from './cpns/detail-swipe.vue'
 import { computed } from 'vue'
 import { useDetailStore } from '@/stores/modules/detail'
 import { storeToRefs } from 'pinia'
+
+import DetailSwipe from './cpns/detail_01-swipe.vue'
+import DetailInfos from './cpns/detail_02-infos.vue'
+import DetailFacility from './cpns/detail_03-facility.vue'
+
 defineOptions({
   name: 'DetailIndex'
 })
