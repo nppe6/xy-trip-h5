@@ -44,6 +44,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('@/views/detail/index.vue'),
+      meta: {
+        hideTabbar: true
+      }
+    },
+    {
       path: '/:pathMatch(.*)',
       component: () => import('@/views/nofind/index.vue')
     }

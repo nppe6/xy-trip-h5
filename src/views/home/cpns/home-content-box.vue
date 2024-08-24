@@ -4,10 +4,10 @@
     <div class="list">
       <template v-for="ele in houseList" :key="ele.data.houseId">
         <div v-if="ele.discoveryContentType === 9">
-          <HouseItemV9 :house-data="ele.data"></HouseItemV9>
+          <HouseItemV9 :house-data="ele.data" @click="itemClick(ele.data)"></HouseItemV9>
         </div>
         <div v-else>
-          <HouseItemV3 :house-data="ele.data"></HouseItemV3>
+          <HouseItemV3 :house-data="ele.data" @click="itemClick(ele.data)"></HouseItemV3>
         </div>
       </template>
     </div>
@@ -22,6 +22,7 @@ import HouseItemV9 from '@/components/house-item-v9/index.vue'
 import HouseItemV3 from '@/components/house-item-v3/index.vue'
 import { usePageCountent } from '@/stores/modules/houselist'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
 const store = usePageCountent()
 const { houseList } = storeToRefs(store)
@@ -32,6 +33,11 @@ const { houseList } = storeToRefs(store)
 
 //   store.axiosGetPageCounent()
 // }
+const router = useRouter()
+const itemClick = (res) => {
+  console.log(res)
+  router.push({ name: 'detail', params: { id: res.houseId } })
+}
 </script>
 
 <style lang="scss" scoped>
