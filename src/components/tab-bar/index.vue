@@ -18,11 +18,18 @@
 <script setup>
 import { tabbarData } from '@/assets/data/tabbar'
 import { getAssets } from '@/utils/load_assets'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 defineOptions({
   name: 'TarBarIndex'
 })
 const cueeentIndex = ref(0)
+const route = useRoute()
+watch(route, (newVal) => {
+  const index = tabbarData.findIndex((ele) => ele.path === newVal.path)
+  if (index === -1) return
+  cueeentIndex.value = index
+})
 </script>
 
 <style lang="scss" scoped>

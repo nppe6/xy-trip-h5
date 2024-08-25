@@ -22,12 +22,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useGetHotStore } from '@/stores/modules/hotsuggessts'
 import { formatMonthDay } from '@/utils/format_day'
-// 日期范围的选择
-const nowData = ref(formatMonthDay(new Date()))
-// 拿到当前时间戳 往后加一天 在传入工具函数之中
-const newData = new Date().getTime() + 24 * 60 * 60 * 1000
-const endData = ref(formatMonthDay(newData))
+import { storeToRefs } from 'pinia'
+
+const store = useGetHotStore()
+const { nowData, endData } = storeToRefs(store)
 
 const showCalender = ref(false)
 const onConfirm = (day) => {

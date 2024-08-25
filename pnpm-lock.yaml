@@ -20,6 +20,9 @@ importers:
       pinia:
         specifier: ^2.2.1
         version: 2.2.1(vue@3.4.37)
+      underscore:
+        specifier: ^1.13.7
+        version: 1.13.7
       vant:
         specifier: ^4.9.4
         version: 4.9.4(vue@3.4.37)
@@ -1031,6 +1034,9 @@ packages:
 
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
+
+  underscore@1.13.7:
+    resolution: {integrity: sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==}
 
   unimport@3.10.0:
     resolution: {integrity: sha512-/UvKRfWx3mNDWwWQhR62HsoM3wxHwYdTq8ellZzMOHnnw4Dp8tovgthyW7DjTrbjDL+i4idOp06voz2VKlvrLw==}
@@ -2045,6 +2051,8 @@ snapshots:
   type-fest@0.20.2: {}
 
   ufo@1.5.4: {}
+
+  underscore@1.13.7: {}
 
   unimport@3.10.0(rollup@4.20.0):
     dependencies:
