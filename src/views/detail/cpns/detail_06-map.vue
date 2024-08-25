@@ -32,7 +32,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .map {
   .baidu {
-    height: 300px;
+    height: 220px;
   }
 }
 </style>
