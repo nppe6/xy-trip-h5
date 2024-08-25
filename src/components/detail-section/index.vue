@@ -33,7 +33,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .section {
-  padding: 16px;
+  padding: 10px 16px;
 
   .header {
     margin-bottom: 20px;
@@ -44,13 +44,14 @@ defineProps({
   }
 
   .content {
-    padding: 10px;
+    padding: 10px 5px;
   }
 
   .footer {
     display: flex;
     justify-content: end;
     padding: 10px 0;
+    border-bottom: 2px solid #f3f4f5;
 
     .more {
       color: var(--primary-color);

@@ -7,6 +7,7 @@
       <detail-facility
         :facility="mainPart.dynamicModule.facilityModule.houseFacility"
       ></detail-facility>
+      <detail-comment :house-comment="mainPart.dynamicModule.commentModule"></detail-comment>
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import { storeToRefs } from 'pinia'
 import DetailSwipe from './cpns/detail_01-swipe.vue'
 import DetailInfos from './cpns/detail_02-infos.vue'
 import DetailFacility from './cpns/detail_03-facility.vue'
+import DetailComment from './cpns/detail_05-comment.vue'
 
 defineOptions({
   name: 'DetailIndex'
